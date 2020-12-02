@@ -13,7 +13,7 @@ int main() {
 
     const auto sum_and_prod = sum_to_prod.find(2020 - n);
     if (sum_and_prod != sum_to_prod.end()) {
-      const auto [sum, prod] = *sum_and_prod;
+      const auto[sum, prod] = *sum_and_prod;
       std::cout << prod * n << std::endl;
       break;
     }
