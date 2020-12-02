@@ -13,8 +13,8 @@ int main() {
     auto[bounds, letter_colon, password] = SplitLine(line);
     auto[low, high] = SplitBounds(bounds);
     char letter = letter_colon[0];
-    int count = Count(password, letter);
-    if (low <= count && count <= high) {
+
+    if ((password[low - 1] == letter) ^ (password[high - 1] == letter)) {
       ++total_valid;
     }
   }
