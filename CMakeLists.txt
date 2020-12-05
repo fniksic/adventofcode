@@ -21,3 +21,5 @@ add_executable(day4 day4.cc day4_common.h)
 target_link_libraries(day4 LINK_PRIVATE day4_common)
 add_executable(day4_part2 day4_part2.cc day4_common.h)
 target_link_libraries(day4_part2 LINK_PRIVATE day4_common)
+
+add_executable(day5 day5.cc)
