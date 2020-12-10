@@ -37,13 +37,10 @@ class Machine {
     Instruction instruction = program_[current_];
     executed_.insert(current_);
     switch (instruction.op) {
-      case kJmp:
-        current_ += instruction.val;
+      case kJmp:current_ += instruction.val;
         break;
-      case kAcc:
-        accumulator_ += instruction.val;
-      default:
-        ++current_;
+      case kAcc:accumulator_ += instruction.val;
+      default:++current_;
     }
   }
 
@@ -58,7 +55,7 @@ class Machine {
     executed_.clear();
   }
 
-  void ReadProgram(istream& in) {
+  void ReadProgram(istream &in) {
     string line;
     while (getline(in, line)) {
       if (line.empty()) break;
@@ -78,7 +75,7 @@ class Machine {
   void EscapeLasso() {
     vector<int> candidates(executed_.begin(), executed_.end());
     for (int candidate : candidates) {
-      Instruction& instruction = program_[candidate];
+      Instruction &instruction = program_[candidate];
       if ((instruction.op == kNop && executed_.find(candidate + instruction.val) == executed_.end()) ||
           (instruction.op == kJmp && executed_.find(candidate + 1) == executed_.end())) {
         executed_.erase(candidate);
