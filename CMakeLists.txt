@@ -3,8 +3,14 @@ project(adventofcode)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(day1 day1.cc)
-add_executable(day1_part2 day1_part2.cc)
+### day1
+add_library(day1_lib day1/day1.h day1/day1.cc day1/day1_part2.cc)
+add_executable(day1 day1/main.cc)
+target_link_libraries(day1 LINK_PRIVATE day1_lib)
+add_executable(day1_part2 day1/main_part2.cc)
+target_link_libraries(day1_part2 LINK_PRIVATE day1_lib)
+add_executable(day1_test day1/test.cc)
+target_link_libraries(day1_test LINK_PRIVATE day1_lib)
 
 add_library(day2_common day2_common.h day2_common.cc)
 target_include_directories(day2_common PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
@@ -38,8 +44,7 @@ target_link_libraries(day11_part2 LINK_PRIVATE day11_common)
 
 ### day12
 add_library(day12_lib day12/day12.h day12/day12.cc)
-target_include_directories(day12_lib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/day12)
-add_executable(day12 day12/day12.h day12/main.cc)
+add_executable(day12 day12/main.cc)
 target_link_libraries(day12 LINK_PRIVATE day12_lib)
-add_executable(day12_test day12/day12.h day12/test.cc)
+add_executable(day12_test day12/test.cc)
 target_link_libraries(day12_test LINK_PRIVATE day12_lib)

@@ -1,19 +1,19 @@
+#include "day1.h"
+
 #include <iostream>
 #include <unordered_set>
 
 using namespace std;
 
-int main() {
+void day1(istream& in, ostream& out) {
   int n;
   unordered_set<int> entries;
 
-  while (cin >> n) {
+  while (in >> n) {
     if (entries.find(2020 - n) != entries.end()) {
-      cout << (2020 - n) * n << endl;
+      out << (2020 - n) * n << endl;
       break;
     }
     entries.insert(n);
   }
-
-  return 0;
 }

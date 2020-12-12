@@ -1,3 +1,5 @@
+#include "../common/test.h"
+
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -16,19 +18,12 @@ F11)"));
   ostringstream out;
   string expected =
       R"(Part 1: 25
-Part 2: 276
+Part 2: 286
 )";
 
   day12(in, out);
 
-  if (out.str() == expected)
-    cout << "TestDay12: OK" << endl;
-  else
-    cout << "TestDay12: Failed!\n\n"
-         << "Expected:\n---\n"
-         << expected << "\nProduced:\n---\n"
-         << out.str() << endl
-         << endl;
+  ASSERT_EQ(expected, out.str());
 }
 
 int main() {
