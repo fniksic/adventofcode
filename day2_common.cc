@@ -3,10 +3,12 @@
 #include <string>
 #include <tuple>
 
-std::tuple<std::string, std::string, std::string> SplitLine(const std::string& line) {
+std::tuple<std::string, std::string, std::string> SplitLine(
+    const std::string& line) {
   auto first_space = line.find(' ');
   auto second_space = line.find(' ', first_space + 1);
-  return {line.substr(0, first_space), line.substr(first_space + 1, second_space - first_space - 1),
+  return {line.substr(0, first_space),
+          line.substr(first_space + 1, second_space - first_space - 1),
           line.substr(second_space + 1)};
 }
 

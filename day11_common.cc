@@ -19,7 +19,8 @@ vector<string> ReadInput() {
   return input;
 }
 
-vector<vector<Cell>> GenerateCells(const vector<string>& input, const NeighborFinder& find_neighbors) {
+vector<vector<Cell>> GenerateCells(const vector<string>& input,
+                                   const NeighborFinder& find_neighbors) {
   int height = input.size();
   int width = input[0].size();
   vector<vector<Cell>> cells(height, vector<Cell>(width));
@@ -33,7 +34,8 @@ vector<vector<Cell>> GenerateCells(const vector<string>& input, const NeighborFi
   return cells;
 }
 
-queue<pair<int, int>> InitWorklist(vector<vector<Cell>>& cells, int neighbor_sensitivity) {
+queue<pair<int, int>> InitWorklist(vector<vector<Cell>>& cells,
+                                   int neighbor_sensitivity) {
   queue<pair<int, int>> worklist;
   for (int i = 0; i < cells.size(); ++i) {
     for (int j = 0; j < cells[i].size(); ++j) {
@@ -51,19 +53,20 @@ queue<pair<int, int>> InitWorklist(vector<vector<Cell>>& cells, int neighbor_sen
 void FindEquilibrium(vector<vector<Cell>>& cells, int neighbor_sensitivity) {
   queue<pair<int, int>> worklist = InitWorklist(cells, neighbor_sensitivity);
   while (!worklist.empty()) {
-    auto[i, j] = worklist.front();
+    auto [i, j] = worklist.front();
     Cell& cell = cells[i][j];
     worklist.pop();
     if (cell.final_state == Cell::kUnoccupied) {
-      for (auto[nb_i, nb_j] : cell.neighbors) {
+      for (auto [nb_i, nb_j] : cell.neighbors) {
         Cell& neighbor = cells[nb_i][nb_j];
-        if (neighbor.final_state == Cell::kUnknown && --neighbor.occupied_neighbors < neighbor_sensitivity) {
+        if (neighbor.final_state == Cell::kUnknown &&
+            --neighbor.occupied_neighbors < neighbor_sensitivity) {
           neighbor.final_state = Cell::kOccupied;
           worklist.emplace(nb_i, nb_j);
         }
       }
     } else {  // cell.final_state == kOccupied
-      for (auto[nb_i, nb_j] : cell.neighbors) {
+      for (auto [nb_i, nb_j] : cell.neighbors) {
         Cell& neighbor = cells[nb_i][nb_j];
         if (neighbor.final_state == Cell::kUnknown) {
           neighbor.final_state = Cell::kUnoccupied;

@@ -2,8 +2,8 @@
 #include <functional>
 #include <iostream>
 #include <iterator>
-#include <string>
 #include <set>
+#include <string>
 #include <utility>
 
 using ::std::cin;
@@ -13,23 +13,25 @@ using ::std::function;
 using ::std::getline;
 using ::std::insert_iterator;
 using ::std::inserter;
-using ::std::string;
 using ::std::set;
 using ::std::set_intersection;
 using ::std::set_union;
+using ::std::string;
 
-using SetOp = function<insert_iterator<set<char>>(set<char>::iterator,
-                                                  set<char>::iterator,
-                                                  set<char>::iterator,
-                                                  set<char>::iterator,
-                                                  insert_iterator<set<char>>)>;
+using SetOp = function<insert_iterator<set<char>>(
+    set<char>::iterator, set<char>::iterator, set<char>::iterator,
+    set<char>::iterator, insert_iterator<set<char>>)>;
 
-const SetOp kSetUnion = set_union<set<char>::iterator, set<char>::iterator, insert_iterator<set<char>>>;
-const SetOp kSetIntersection = set_intersection<set<char>::iterator, set<char>::iterator, insert_iterator<set<char>>>;
+const SetOp kSetUnion = set_union<set<char>::iterator, set<char>::iterator,
+                                  insert_iterator<set<char>>>;
+const SetOp kSetIntersection =
+    set_intersection<set<char>::iterator, set<char>::iterator,
+                     insert_iterator<set<char>>>;
 
 set<char> set_op(const set<char>& fst, const set<char>& snd, const SetOp& op) {
   set<char> result;
-  op(fst.begin(), fst.end(), snd.begin(), snd.end(), inserter(result, result.end()));
+  op(fst.begin(), fst.end(), snd.begin(), snd.end(),
+     inserter(result, result.end()));
   return result;
 }
 

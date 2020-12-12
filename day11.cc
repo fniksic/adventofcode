@@ -9,7 +9,8 @@ using ::std::vector;
 
 constexpr int kNeighborSensitivity = 4;
 
-void FindNeighbors(vector<vector<Cell>>& cells, int height, int width, int i, int j) {
+void FindNeighbors(vector<vector<Cell>>& cells, int height, int width, int i,
+                   int j) {
   Cell& cell = cells[i][j];
   for (const Direction& d : kDirections) {
     int nb_i = i + d.i;

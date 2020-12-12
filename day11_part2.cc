@@ -9,10 +9,12 @@ using ::std::vector;
 
 constexpr int kNeighborSensitivity = 5;
 
-void FindNeighbors(vector<vector<Cell>>& cells, int height, int width, int i, int j) {
+void FindNeighbors(vector<vector<Cell>>& cells, int height, int width, int i,
+                   int j) {
   Cell& cell = cells[i][j];
   for (const Direction& d : kDirections) {
-    for (int nb_i = i + d.i, nb_j = j + d.j; InLimits(nb_i, nb_j, height, width); nb_i += d.i, nb_j += d.j) {
+    for (int nb_i = i + d.i, nb_j = j + d.j;
+         InLimits(nb_i, nb_j, height, width); nb_i += d.i, nb_j += d.j) {
       Cell& neighbor = cells[nb_i][nb_j];
       if (neighbor.is_seat) {
         cell.neighbors.emplace_back(nb_i, nb_j);

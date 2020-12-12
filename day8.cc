@@ -24,8 +24,10 @@ class Machine {
   void AddInstructionFromLine(string_view line) {
     string_view op_text = line.substr(0, 3);
     Operation op = kNop;
-    if (op_text == "acc") op = kAcc;
-    else if (op_text == "jmp") op = kJmp;
+    if (op_text == "acc")
+      op = kAcc;
+    else if (op_text == "jmp")
+      op = kJmp;
 
     int val = stoi(string(line.substr(5)));
     if (line[4] == '-') val *= -1;
@@ -37,17 +39,18 @@ class Machine {
     Instruction instruction = program_[current_];
     executed_.insert(current_);
     switch (instruction.op) {
-      case kJmp:current_ += instruction.val;
+      case kJmp:
+        current_ += instruction.val;
         break;
-      case kAcc:accumulator_ += instruction.val;
-      default:++current_;
+      case kAcc:
+        accumulator_ += instruction.val;
+      default:
+        ++current_;
     }
   }
 
  public:
-  int accumulator() {
-    return accumulator_;
-  }
+  int accumulator() { return accumulator_; }
 
   void Reset() {
     accumulator_ = 0;
@@ -76,8 +79,10 @@ class Machine {
     vector<int> candidates(executed_.begin(), executed_.end());
     for (int candidate : candidates) {
       Instruction& instruction = program_[candidate];
-      if ((instruction.op == kNop && executed_.find(candidate + instruction.val) == executed_.end())
-          || (instruction.op == kJmp && executed_.find(candidate + 1) == executed_.end())) {
+      if ((instruction.op == kNop &&
+           executed_.find(candidate + instruction.val) == executed_.end()) ||
+          (instruction.op == kJmp &&
+           executed_.find(candidate + 1) == executed_.end())) {
         executed_.erase(candidate);
         instruction.op = instruction.op == kNop ? kJmp : kNop;
         current_ = candidate;

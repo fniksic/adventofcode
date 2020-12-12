@@ -10,8 +10,8 @@ int main() {
     std::getline(std::cin, line);
     if (line.empty()) break;
 
-    auto[bounds, letter_colon, password] = SplitLine(line);
-    auto[low, high] = SplitBounds(bounds);
+    auto [bounds, letter_colon, password] = SplitLine(line);
+    auto [low, high] = SplitBounds(bounds);
     char letter = letter_colon[0];
 
     if ((password[low - 1] == letter) ^ (password[high - 1] == letter)) {

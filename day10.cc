@@ -1,6 +1,6 @@
-#include <cstdint>
-#include <array>
 #include <algorithm>
+#include <array>
+#include <cstdint>
 #include <iostream>
 #include <vector>
 

@@ -65,7 +65,7 @@ int ContainedIn(int index, unordered_set<int>& visited) {
 // Hopefully there are no cycles
 int Contains(int index) {
   int result = 0;
-  for (auto[other_index, quantity] : contains[index]) {
+  for (auto [other_index, quantity] : contains[index]) {
     result += quantity * (1 + Contains(other_index));
   }
   return result;

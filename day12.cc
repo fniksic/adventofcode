@@ -1,16 +1,20 @@
-#include <cmath>
 #include <array>
+#include <cmath>
 #include <iostream>
 #include <string>
 #include <utility>
 
 using namespace std;
 
-struct Vec { int x; int y; };
+struct Vec {
+  int x;
+  int y;
+};
 
 using Rot = pair<Vec, Vec>;
 
-constexpr array kRotations = {Rot{{1, 0}, {0, 1}}, Rot{{0, -1}, {1, 0}}, Rot{{-1, 0}, {0, -1}}, Rot{{0, 1}, {-1, 0}}};
+constexpr array kRotations = {Rot{{1, 0}, {0, 1}}, Rot{{0, -1}, {1, 0}},
+                              Rot{{-1, 0}, {0, -1}}, Rot{{0, 1}, {-1, 0}}};
 
 int main() {
   Vec position{0, 0};
@@ -30,28 +34,24 @@ int main() {
     }
 
     switch (action) {
-      case 'N': {
+      case 'N':
         position.y += value;
         waypoint.y += value;
         break;
-      }
-      case 'S': {
+      case 'S':
         position.y -= value;
         waypoint.y -= value;
         break;
-      }
-      case 'E': {
+      case 'E':
         position.x += value;
         waypoint.x += value;
         break;
-      }
-      case 'W': {
+      case 'W':
         position.x -= value;
         waypoint.x -= value;
         break;
-      }
       case 'L': {
-        auto[a, b] = kRotations[value / 90];
+        auto [a, b] = kRotations[value / 90];
 
         Vec temp = direction;
         direction.x = a.x * temp.x + a.y * temp.y;
@@ -63,13 +63,12 @@ int main() {
         break;
       }
       case 'F':
-      default: {
+      default:
         position.x += direction.x * value;
         position.y += direction.y * value;
         wp_position.x += waypoint.x * value;
         wp_position.y += waypoint.y * value;
         break;
-      }
     }
   }
 

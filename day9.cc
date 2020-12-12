@@ -1,5 +1,5 @@
-#include <cstdint>
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
 #include <iterator>
 #include <unordered_set>
@@ -25,7 +25,8 @@ int64_t FindInvalid(const vector<int64_t>& numbers) {
     if (i >= kWindowSize) {
       bool not_sum = true;
       for (int64_t m : window) {
-        if (numbers[i] - m != m && window.find(numbers[i] - m) != window.end()) {
+        if (numbers[i] - m != m &&
+            window.find(numbers[i] - m) != window.end()) {
           not_sum = false;
           break;
         }
@@ -43,8 +44,10 @@ int64_t FindSum(const vector<int64_t>& numbers, int64_t invalid) {
   auto low = numbers.begin();
   auto high = numbers.begin();
   while (sum != invalid && high != numbers.end()) {
-    if (sum < invalid || distance(low, high) < 2) sum += *high++;
-    else sum -= *low++;
+    if (sum < invalid || distance(low, high) < 2)
+      sum += *high++;
+    else
+      sum -= *low++;
   }
   return *min_element(low, high) + *max_element(low, high);
 }

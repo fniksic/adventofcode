@@ -19,6 +19,7 @@ int main() {
     }
   }
   cout << "Part 1: " << counts[2] << endl;
-  cout << "Part 2: " << counts[0] * counts[1] * counts[2] * counts[3] * counts[4] << endl;
+  cout << "Part 2: "
+       << counts[0] * counts[1] * counts[2] * counts[3] * counts[4] << endl;
   return 0;
 }

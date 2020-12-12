@@ -19,10 +19,12 @@ using ::std::string_view;
 using ::std::unordered_set;
 using ::std::vector;
 
-constexpr array<string_view, 7> expected_fields = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"};
+constexpr array<string_view, 7> expected_fields = {"byr", "iyr", "eyr", "hgt",
+                                                   "hcl", "ecl", "pid"};
 
 bool IsExpected(string_view field) {
-  return find(expected_fields.begin(), expected_fields.end(), field) != expected_fields.end();
+  return find(expected_fields.begin(), expected_fields.end(), field) !=
+         expected_fields.end();
 }
 
 vector<string_view> SplitLine(string_view line) {
@@ -55,7 +57,8 @@ void ProcessPassports(const Validator& validator) {
       }
     }
   }
-  // If there was no empty line at the end, we need to account for the last entry
+  // If there was no empty line at the end, we need to account for the last
+  // entry
   if (fields.size() == expected_fields.size()) ++total_valid;
   cout << total_valid << endl;
 }
