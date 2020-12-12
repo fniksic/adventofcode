@@ -3,9 +3,7 @@
 #include <string>
 #include <tuple>
 
-using ::std::stoi;
-using ::std::string;
-using ::std::tuple;
+using namespace std;
 
 tuple<string, string, string> SplitLine(const string& line) {
   auto first_space = line.find(' ');

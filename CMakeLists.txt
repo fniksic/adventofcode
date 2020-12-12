@@ -12,12 +12,16 @@ target_link_libraries(day1_part2 LINK_PRIVATE day1_lib)
 add_executable(day1_test day1/test.cc)
 target_link_libraries(day1_test LINK_PRIVATE day1_lib)
 
-add_library(day2_common day2_common.h day2_common.cc)
-target_include_directories(day2_common PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(day2 day2.cc day2_common.h)
-target_link_libraries(day2 LINK_PRIVATE day2_common)
-add_executable(day2_part2 day2_part2.cc day2_common.h)
-target_link_libraries(day2_part2 LINK_PRIVATE day2_common)
+### day2
+add_library(day2_common day2/day2_common.h day2/day2_common.cc)
+add_library(day2_lib day2/day2.h day2/day2.cc day2/day2_part2.cc)
+target_link_libraries(day2_lib LINK_PRIVATE day2_common)
+add_executable(day2 day2/main.cc)
+target_link_libraries(day2 LINK_PRIVATE day2_lib)
+add_executable(day2_part2 day2/main_part2.cc)
+target_link_libraries(day2_part2 LINK_PRIVATE day2_lib)
+add_executable(day2_test day2/test.cc)
+target_link_libraries(day2_test LINK_PRIVATE day2_lib)
 
 add_executable(day3 day3.cc)
 
