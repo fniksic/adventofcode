@@ -35,3 +35,5 @@ add_executable(day11 day11.cc day11_common.h)
 target_link_libraries(day11 LINK_PRIVATE day11_common)
 add_executable(day11_part2 day11_part2.cc day11_common.h)
 target_link_libraries(day11_part2 LINK_PRIVATE day11_common)
+
+add_executable(day12 day12.cc)
