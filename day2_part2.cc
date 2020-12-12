@@ -3,11 +3,12 @@
 
 #include "day2_common.h"
 
+using namespace std;
+
 int main() {
+  string line;
   int total_valid = 0;
-  while (!std::cin.eof()) {
-    std::string line;
-    std::getline(std::cin, line);
+  while (getline(cin, line)) {
     if (line.empty()) break;
 
     auto [bounds, letter_colon, password] = SplitLine(line);
@@ -18,6 +19,6 @@ int main() {
       ++total_valid;
     }
   }
-  std::cout << total_valid << std::endl;
+  cout << total_valid << endl;
   return 0;
 }

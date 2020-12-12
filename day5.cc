@@ -3,21 +3,14 @@
 #include <iostream>
 #include <string>
 
-using ::std::bitset;
-using ::std::cin;
-using ::std::cout;
-using ::std::endl;
-using ::std::getline;
-using ::std::max;
-using ::std::sort;
-using ::std::string;
+using namespace std;
 
 int main() {
   string line;
   int max_seat_id = 0;
   bitset<1024> seats;
   while (getline(cin, line)) {
-    if (line.empty()) continue;
+    if (line.empty()) break;
     int seat_id = 0;
     for (string::size_type i = 0; i < line.size(); ++i) {
       if (line[i] == 'B' || line[i] == 'R') {

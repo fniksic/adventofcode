@@ -1,16 +1,19 @@
 #include <iostream>
 #include <unordered_set>
 
+using namespace std;
+
 int main() {
-  std::unordered_set<int> entries;
-  while (!std::cin.eof()) {
-    int n;
-    std::cin >> n;
+  int n;
+  unordered_set<int> entries;
+
+  while (cin >> n) {
     if (entries.find(2020 - n) != entries.end()) {
-      std::cout << (2020 - n) * n << std::endl;
+      cout << (2020 - n) * n << endl;
       break;
     }
     entries.insert(n);
   }
+
   return 0;
 }

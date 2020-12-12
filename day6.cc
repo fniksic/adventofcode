@@ -6,17 +6,7 @@
 #include <string>
 #include <utility>
 
-using ::std::cin;
-using ::std::cout;
-using ::std::endl;
-using ::std::function;
-using ::std::getline;
-using ::std::insert_iterator;
-using ::std::inserter;
-using ::std::set;
-using ::std::set_intersection;
-using ::std::set_union;
-using ::std::string;
+using namespace std;
 
 using SetOp = function<insert_iterator<set<char>>(
     set<char>::iterator, set<char>::iterator, set<char>::iterator,

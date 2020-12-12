@@ -3,9 +3,7 @@
 
 #include "day11_common.h"
 
-using ::std::cout;
-using ::std::endl;
-using ::std::vector;
+using namespace std;
 
 constexpr int kNeighborSensitivity = 4;
 

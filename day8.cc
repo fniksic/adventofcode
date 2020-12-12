@@ -50,7 +50,7 @@ class Machine {
   }
 
  public:
-  int accumulator() { return accumulator_; }
+  int accumulator() const { return accumulator_; }
 
   void Reset() {
     accumulator_ = 0;

@@ -3,8 +3,7 @@
 
 #include "day4_common.h"
 
-using ::std::cout;
-using ::std::string_view;
+using namespace std;
 
 int main() {
   cout << "Part 1: ";
