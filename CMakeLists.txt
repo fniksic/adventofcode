@@ -41,7 +41,13 @@ target_link_libraries(day4_part2 LINK_PRIVATE day4_lib)
 add_executable(day4_test day4/test.cc)
 target_link_libraries(day4_test LINK_PRIVATE day4_lib)
 
-add_executable(day5 day5.cc)
+### day5
+add_library(day5_lib day5/day5.h day5/day5.cc)
+add_executable(day5 day5/main.cc)
+target_link_libraries(day5 LINK_PRIVATE day5_lib)
+add_executable(day5_test day5/test.cc)
+target_link_libraries(day5_test LINK_PRIVATE day5_lib)
+
 add_executable(day6 day6.cc)
 add_executable(day7 day7.cc)
 add_executable(day8 day8.cc)
