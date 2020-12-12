@@ -36,4 +36,10 @@ target_link_libraries(day11 LINK_PRIVATE day11_common)
 add_executable(day11_part2 day11_part2.cc day11_common.h)
 target_link_libraries(day11_part2 LINK_PRIVATE day11_common)
 
-add_executable(day12 day12.cc)
+### day12
+add_library(day12_lib day12/day12.h day12/day12.cc)
+target_include_directories(day12_lib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/day12)
+add_executable(day12 day12/day12.h day12/main.cc)
+target_link_libraries(day12 LINK_PRIVATE day12_lib)
+add_executable(day12_test day12/day12.h day12/test.cc)
+target_link_libraries(day12_test LINK_PRIVATE day12_lib)

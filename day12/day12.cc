@@ -1,3 +1,5 @@
+#include "day12.h"
+
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -16,7 +18,7 @@ using Rot = pair<Vec, Vec>;
 constexpr array kRotations = {Rot{{1, 0}, {0, 1}}, Rot{{0, -1}, {1, 0}},
                               Rot{{-1, 0}, {0, -1}}, Rot{{0, 1}, {-1, 0}}};
 
-int main() {
+void day12(istream& in, ostream& out) {
   Vec position{0, 0};
   Vec direction{1, 0};
 
@@ -24,7 +26,7 @@ int main() {
   Vec waypoint{10, 1};
 
   string command;
-  while (cin >> command) {
+  while (in >> command) {
     char action = command[0];
     int value = stoi(command.substr(1));
 
@@ -72,8 +74,6 @@ int main() {
     }
   }
 
-  cout << "Part 1: " << abs(position.x) + abs(position.y) << endl;
-  cout << "Part 2: " << abs(wp_position.x) + abs(wp_position.y) << endl;
-
-  return 0;
+  out << "Part 1: " << abs(position.x) + abs(position.y) << endl;
+  out << "Part 2: " << abs(wp_position.x) + abs(wp_position.y) << endl;
 }
