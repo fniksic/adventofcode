@@ -8,16 +8,7 @@
 #include <unordered_set>
 #include <vector>
 
-using ::std::array;
-using ::std::cin;
-using ::std::cout;
-using ::std::endl;
-using ::std::find;
-using ::std::getline;
-using ::std::string;
-using ::std::string_view;
-using ::std::unordered_set;
-using ::std::vector;
+using namespace std;
 
 constexpr array<string_view, 7> expected_fields = {"byr", "iyr", "eyr", "hgt",
                                                    "hcl", "ecl", "pid"};
@@ -39,11 +30,11 @@ vector<string_view> SplitLine(string_view line) {
   return result;
 }
 
-void ProcessPassports(const Validator& validator) {
+void ProcessPassports(istream& in, ostream& out, const Validator& validator) {
   string line;
   unordered_set<string> fields;
   int total_valid = 0;
-  while (getline(cin, line)) {
+  while (getline(in, line)) {
     if (line.empty()) {
       if (fields.size() == expected_fields.size()) ++total_valid;
       fields.clear();
@@ -60,5 +51,5 @@ void ProcessPassports(const Validator& validator) {
   // If there was no empty line at the end, we need to account for the last
   // entry
   if (fields.size() == expected_fields.size()) ++total_valid;
-  cout << total_valid << endl;
+  out << total_valid << endl;
 }

@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "day4.h"
 #include "day4_common.h"
 
 using namespace std;
@@ -53,10 +54,9 @@ const ValidatorMap kValidatorMap{
        return regex_match(value, nine_digit_number_regex);
      }}};
 
-int main() {
-  std::cout << "Part 2: ";
-  ProcessPassports([](string_view field, string_view value) {
+void day4_part2(std::istream& in, std::ostream& out) {
+  out << "Part 2: ";
+  ProcessPassports(in, out, [](string_view field, string_view value) {
     return kValidatorMap.at(string(field))(string(value));
   });
-  return 0;
 }
