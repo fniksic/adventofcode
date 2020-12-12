@@ -37,7 +37,7 @@ vector<string_view> SplitLine(string_view line) {
   return result;
 }
 
-void ProcessPassports(const Validator &validator) {
+void ProcessPassports(const Validator& validator) {
   string line;
   unordered_set<string> fields;
   int total_valid = 0;

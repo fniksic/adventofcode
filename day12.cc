@@ -10,10 +10,7 @@ struct Vec { int x; int y; };
 
 using Rot = pair<Vec, Vec>;
 
-constexpr array kRotations = {Rot{{1, 0}, {0, 1}},
-                              Rot{{0, -1}, {1, 0}},
-                              Rot{{-1, 0}, {0, -1}},
-                              Rot{{0, 1}, {-1, 0}}};
+constexpr array kRotations = {Rot{{1, 0}, {0, 1}}, Rot{{0, -1}, {1, 0}}, Rot{{-1, 0}, {0, -1}}, Rot{{0, 1}, {-1, 0}}};
 
 int main() {
   Vec position{0, 0};

@@ -27,7 +27,7 @@ using SetOp = function<insert_iterator<set<char>>(set<char>::iterator,
 const SetOp kSetUnion = set_union<set<char>::iterator, set<char>::iterator, insert_iterator<set<char>>>;
 const SetOp kSetIntersection = set_intersection<set<char>::iterator, set<char>::iterator, insert_iterator<set<char>>>;
 
-set<char> set_op(const set<char> &fst, const set<char> &snd, const SetOp &op) {
+set<char> set_op(const set<char>& fst, const set<char>& snd, const SetOp& op) {
   set<char> result;
   op(fst.begin(), fst.end(), snd.begin(), snd.end(), inserter(result, result.end()));
   return result;
@@ -63,7 +63,8 @@ int main() {
   }
 
   if (!group_union.empty()) union_sum += group_union.size();
-  if (!group_intersection.empty()) intersection_sum += group_intersection.size();
+  if (!group_intersection.empty())
+    intersection_sum += group_intersection.size();
   cout << "Part 1: " << union_sum << endl;
   cout << "Part 2: " << intersection_sum << endl;
 

@@ -13,7 +13,7 @@ vector<int> ReadInput() {
   return result;
 }
 
-int GetDifferenceDistribution(const vector<int> &adapters) {
+int GetDifferenceDistribution(const vector<int>& adapters) {
   // diffs[0] = -1 accounts for the zero inserted at the beginning
   array diffs = {-1, 0, 0, 0};
   int previous = 0;
@@ -24,7 +24,7 @@ int GetDifferenceDistribution(const vector<int> &adapters) {
   return diffs[1] * diffs[3];
 }
 
-int64_t GetTotalArrangements(const vector<int> &adapters) {
+int64_t GetTotalArrangements(const vector<int>& adapters) {
   vector<int64_t> total(adapters.size(), 0);
   total[0] = 1;
   for (int i = 1; i < adapters.size(); ++i) {

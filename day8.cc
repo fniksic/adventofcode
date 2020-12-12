@@ -55,7 +55,7 @@ class Machine {
     executed_.clear();
   }
 
-  void ReadProgram(istream &in) {
+  void ReadProgram(istream& in) {
     string line;
     while (getline(in, line)) {
       if (line.empty()) break;
@@ -75,9 +75,9 @@ class Machine {
   void EscapeLasso() {
     vector<int> candidates(executed_.begin(), executed_.end());
     for (int candidate : candidates) {
-      Instruction &instruction = program_[candidate];
-      if ((instruction.op == kNop && executed_.find(candidate + instruction.val) == executed_.end()) ||
-          (instruction.op == kJmp && executed_.find(candidate + 1) == executed_.end())) {
+      Instruction& instruction = program_[candidate];
+      if ((instruction.op == kNop && executed_.find(candidate + instruction.val) == executed_.end())
+          || (instruction.op == kJmp && executed_.find(candidate + 1) == executed_.end())) {
         executed_.erase(candidate);
         instruction.op = instruction.op == kNop ? kJmp : kNop;
         current_ = candidate;

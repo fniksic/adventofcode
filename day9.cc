@@ -18,7 +18,7 @@ vector<int64_t> ReadInput() {
   return numbers;
 }
 
-int64_t FindInvalid(const vector<int64_t> &numbers) {
+int64_t FindInvalid(const vector<int64_t>& numbers) {
   int64_t invalid = -1;
   unordered_multiset<int64_t> window;
   for (int i = 0; i < numbers.size() && invalid < 0; ++i) {
@@ -38,7 +38,7 @@ int64_t FindInvalid(const vector<int64_t> &numbers) {
   return invalid;
 }
 
-int64_t FindSum(const vector<int64_t> &numbers, int64_t invalid) {
+int64_t FindSum(const vector<int64_t>& numbers, int64_t invalid) {
   int64_t sum = 0;
   auto low = numbers.begin();
   auto high = numbers.begin();

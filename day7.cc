@@ -12,7 +12,7 @@ unordered_map<string, int> bag_index;
 vector<vector<pair<int, int>>> contains;
 vector<vector<int>> contained_in;
 
-int GetBagIndex(const string &color) {
+int GetBagIndex(const string& color) {
   auto iter = bag_index.find(color);
   if (iter == bag_index.end()) {
     bag_index[color] = contains.size();
@@ -23,7 +23,7 @@ int GetBagIndex(const string &color) {
   return iter->second;
 }
 
-void ConsumeLine(string &&line) {
+void ConsumeLine(string&& line) {
   istringstream in(forward<string>(line));
   string token, extra_token, extra_extra_token;
 
@@ -51,7 +51,7 @@ void ConsumeLine(string &&line) {
   }
 }
 
-int ContainedIn(int index, unordered_set<int> &visited) {
+int ContainedIn(int index, unordered_set<int>& visited) {
   int result = 0;
   for (int other_index : contained_in[index]) {
     if (visited.find(other_index) == visited.end()) {
