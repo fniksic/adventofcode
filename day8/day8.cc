@@ -1,5 +1,6 @@
+#include "day8.h"
+
 #include <iostream>
-#include <istream>
 #include <string>
 #include <string_view>
 #include <unordered_set>
@@ -94,18 +95,16 @@ class Machine {
   }
 };
 
-int main() {
+void day8(istream& in, ostream& out) {
   Machine machine;
-  machine.ReadProgram(cin);
+  machine.ReadProgram(in);
   machine.DetectLassoOrTerminate();
 
-  cout << "Part 1: " << machine.accumulator() << endl;
+  out << "Part 1: " << machine.accumulator() << endl;
 
   machine.EscapeLasso();
   machine.Reset();
   machine.DetectLassoOrTerminate();
 
-  cout << "Part 2: " << machine.accumulator() << endl;
-
-  return 0;
+  out << "Part 2: " << machine.accumulator() << endl;
 }
