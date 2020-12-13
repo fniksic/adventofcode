@@ -1,3 +1,5 @@
+#include "day6.h"
+
 #include <algorithm>
 #include <functional>
 #include <iostream>
@@ -25,7 +27,7 @@ set<char> set_op(const set<char>& fst, const set<char>& snd, const SetOp& op) {
   return result;
 }
 
-int main() {
+void day6(istream& in, ostream& out) {
   string line;
   set<char> group_union;
   set<char> group_intersection;
@@ -33,7 +35,7 @@ int main() {
   int union_sum = 0;
   int intersection_sum = 0;
 
-  while (getline(cin, line)) {
+  while (getline(in, line)) {
     if (line.empty()) {
       union_sum += group_union.size();
       group_union.clear();
@@ -57,8 +59,6 @@ int main() {
   if (!group_union.empty()) union_sum += group_union.size();
   if (!group_intersection.empty())
     intersection_sum += group_intersection.size();
-  cout << "Part 1: " << union_sum << endl;
-  cout << "Part 2: " << intersection_sum << endl;
-
-  return 0;
+  out << "Part 1: " << union_sum << endl;
+  out << "Part 2: " << intersection_sum << endl;
 }
