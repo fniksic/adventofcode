@@ -3,11 +3,12 @@
 
 #include <array>
 #include <functional>
+#include <istream>
 #include <string>
 #include <utility>
 #include <vector>
 
-std::vector<std::string> ReadInput();
+std::vector<std::string> ReadInput(std::istream& in);
 
 struct Cell {
   enum FinalState { kUnknown, kOccupied, kUnoccupied };

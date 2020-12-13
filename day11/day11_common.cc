@@ -6,16 +6,12 @@
 #include <utility>
 #include <vector>
 
-using ::std::cin;
-using ::std::pair;
-using ::std::queue;
-using ::std::string;
-using ::std::vector;
+using namespace std;
 
-vector<string> ReadInput() {
+vector<string> ReadInput(istream& in) {
   string line;
   vector<string> input;
-  while (cin >> line) input.push_back(move(line));
+  while (in >> line) input.push_back(move(line));
   return input;
 }
 

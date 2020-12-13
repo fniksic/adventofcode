@@ -1,14 +1,15 @@
 #include <iostream>
 #include <vector>
 
+#include "day11.h"
 #include "day11_common.h"
 
 using namespace std;
 
 constexpr int kNeighborSensitivity = 5;
 
-void FindNeighbors(vector<vector<Cell>>& cells, int height, int width, int i,
-                   int j) {
+void FindVisibleSeats(vector<vector<Cell>>& cells, int height, int width, int i,
+                      int j) {
   Cell& cell = cells[i][j];
   for (const Direction& d : kDirections) {
     for (int nb_i = i + d.i, nb_j = j + d.j;
@@ -23,9 +24,8 @@ void FindNeighbors(vector<vector<Cell>>& cells, int height, int width, int i,
   }
 }
 
-int main() {
-  vector<vector<Cell>> cells = GenerateCells(ReadInput(), FindNeighbors);
+void day11_part2(std::istream& in, std::ostream& out) {
+  vector<vector<Cell>> cells = GenerateCells(ReadInput(in), FindVisibleSeats);
   FindEquilibrium(cells, kNeighborSensitivity);
-  cout << "Part 2: " << CountOccupied(cells) << endl;
-  return 0;
+  out << "Part 2: " << CountOccupied(cells) << endl;
 }
