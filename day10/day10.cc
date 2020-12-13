@@ -1,3 +1,5 @@
+#include "day10.h"
+
 #include <algorithm>
 #include <array>
 #include <cstdint>
@@ -6,10 +8,10 @@
 
 using namespace std;
 
-vector<int> ReadInput() {
+vector<int> ReadInput(istream& in) {
   int n;
   vector<int> result;
-  while (cin >> n) result.push_back(n);
+  while (in >> n) result.push_back(n);
   return result;
 }
 
@@ -35,12 +37,11 @@ int64_t GetTotalArrangements(const vector<int>& adapters) {
   return total.back();
 }
 
-int main() {
-  vector<int> adapters = ReadInput();
+void day10(istream& in, ostream& out) {
+  vector<int> adapters = ReadInput(in);
   sort(adapters.begin(), adapters.end());
   adapters.insert(adapters.begin(), 0);
   adapters.push_back(adapters.back() + 3);
-  cout << "Part 1: " << GetDifferenceDistribution(adapters) << endl;
-  cout << "Part 2: " << GetTotalArrangements(adapters) << endl;
-  return 0;
+  out << "Part 1: " << GetDifferenceDistribution(adapters) << endl;
+  out << "Part 2: " << GetTotalArrangements(adapters) << endl;
 }
