@@ -4,7 +4,7 @@ project(adventofcode)
 set(CMAKE_CXX_STANDARD 17)
 
 ### day1
-add_library(day1_lib day1/day1.h day1/day1.cc day1/day1_part2.cc)
+add_library(day1_lib day1/day1.h day1/day1.cc)
 add_executable(day1 day1/main.cc)
 target_link_libraries(day1 LINK_PRIVATE day1_lib)
 add_executable(day1_part2 day1/main_part2.cc)
@@ -13,9 +13,7 @@ add_executable(day1_test day1/test.cc)
 target_link_libraries(day1_test LINK_PRIVATE day1_lib)
 
 ### day2
-add_library(day2_common day2/day2_common.h day2/day2_common.cc)
-add_library(day2_lib day2/day2.h day2/day2.cc day2/day2_part2.cc)
-target_link_libraries(day2_lib LINK_PRIVATE day2_common)
+add_library(day2_lib day2/day2.h day2/day2.cc)
 add_executable(day2 day2/main.cc)
 target_link_libraries(day2 LINK_PRIVATE day2_lib)
 add_executable(day2_part2 day2/main_part2.cc)
@@ -31,9 +29,7 @@ add_executable(day3_test day3/test.cc)
 target_link_libraries(day3_test LINK_PRIVATE day3_lib)
 
 ### day4
-add_library(day4_common day4/day4_common.h day4/day4_common.cc)
-add_library(day4_lib day4/day4.h day4/day4.cc day4/day4_part2.cc)
-target_link_libraries(day4_lib LINK_PRIVATE day4_common)
+add_library(day4_lib day4/day4.h day4/day4.cc)
 add_executable(day4 day4/main.cc)
 target_link_libraries(day4 LINK_PRIVATE day4_lib)
 add_executable(day4_part2 day4/main_part2.cc)
@@ -84,9 +80,7 @@ add_executable(day10_test day10/test.cc)
 target_link_libraries(day10_test LINK_PRIVATE day10_lib)
 
 ### day11
-add_library(day11_common day11/day11_common.h day11/day11_common.cc)
-add_library(day11_lib day11/day11.h day11/day11.cc day11/day11_part2.cc)
-target_link_libraries(day11_lib LINK_PRIVATE day11_common)
+add_library(day11_lib day11/day11.h day11/day11.cc)
 add_executable(day11 day11/main.cc)
 target_link_libraries(day11 LINK_PRIVATE day11_lib)
 add_executable(day11_part2 day11/main_part2.cc)
