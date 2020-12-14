@@ -107,3 +107,12 @@ add_executable(day13 day13/main.cc)
 target_link_libraries(day13 LINK_PRIVATE day13_lib)
 add_executable(day13_test day13/test.cc)
 target_link_libraries(day13_test LINK_PRIVATE day13_lib)
+
+### day14
+add_library(day14_lib day14/day14.h day14/day14.cc)
+add_executable(day14 day14/main.cc)
+target_link_libraries(day14 LINK_PRIVATE day14_lib)
+add_executable(day14_part2 day14/main_part2.cc)
+target_link_libraries(day14_part2 LINK_PRIVATE day14_lib)
+add_executable(day14_test day14/test.cc)
+target_link_libraries(day14_test LINK_PRIVATE day14_lib)
