@@ -1,7 +1,10 @@
 #include "../common/test.h"
 
+#include <array>
 #include <sstream>
 #include <string>
+#include <thread>
+#include <vector>
 
 #include "day15.h"
 
@@ -99,12 +102,15 @@ Part 2: 362
 }
 
 int main() {
-  TestDay15();
-  TestDay15_1();
-  TestDay15_2();
-  TestDay15_3();
-  TestDay15_4();
-  TestDay15_5();
-  TestDay15_6();
+  array tests = {TestDay15,   TestDay15_1, TestDay15_2, TestDay15_3,
+                 TestDay15_4, TestDay15_5, TestDay15_6};
+  vector<thread> threads;
+  threads.reserve(tests.size());
+  for (const auto& test : tests) {
+    threads.emplace_back(test);
+  }
+  for (auto& th : threads) {
+    th.join();
+  }
   return 0;
 }
