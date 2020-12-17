@@ -2,6 +2,7 @@
 #define ADVENTOFCODE_COMMON_TEST_H_
 
 #include <iostream>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -14,6 +15,18 @@ std::ostream& operator<<(std::ostream& out, std::vector<T> vec) {
     separator = ", ";
   }
   out << ']';
+  return out;
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& out, std::set<T> s) {
+  const char* separator = "";
+  out << '{';
+  for (const auto& element : s) {
+    out << separator << element;
+    separator = ", ";
+  }
+  out << '}';
   return out;
 }
 
