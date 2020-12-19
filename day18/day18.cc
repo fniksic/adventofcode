@@ -12,39 +12,23 @@
 
 using namespace std;
 
-struct NumExpr;
-struct AddExpr;
-struct MulExpr;
+struct Expression;
 
-using Expression = variant<NumExpr, AddExpr, MulExpr>;
+using ExpressionPtr = unique_ptr<Expression>;
 
 struct NumExpr {
   int64_t value;
 };
 
 struct AddExpr {
-  unique_ptr<Expression> left;
-  unique_ptr<Expression> right;
+  ExpressionPtr left;
+  ExpressionPtr right;
 };
 
 struct MulExpr {
-  unique_ptr<Expression> left;
-  unique_ptr<Expression> right;
+  ExpressionPtr left;
+  ExpressionPtr right;
 };
-
-unique_ptr<Expression> Num(int64_t value) {
-  return make_unique<Expression>(NumExpr{value});
-}
-
-unique_ptr<Expression> Add(unique_ptr<Expression> left,
-                           unique_ptr<Expression> right) {
-  return make_unique<Expression>(AddExpr{move(left), move(right)});
-}
-
-unique_ptr<Expression> Mul(unique_ptr<Expression> left,
-                           unique_ptr<Expression> right) {
-  return make_unique<Expression>(MulExpr{move(left), move(right)});
-}
 
 template <typename... Ts>
 struct overloaded : Ts... {
@@ -54,15 +38,31 @@ struct overloaded : Ts... {
 template <typename... Ts>
 overloaded(Ts...) -> overloaded<Ts...>;
 
-template <typename CaseNum, typename CaseAdd, typename CaseMul>
-auto match(const Expression& expr, CaseNum case_num, CaseAdd case_add,
-           CaseMul case_mul) {
-  return visit(overloaded{case_num, case_add, case_mul}, expr);
+struct Expression : public variant<NumExpr, AddExpr, MulExpr> {
+  using variant<NumExpr, AddExpr, MulExpr>::variant;
+
+  template <typename CaseNum, typename CaseAdd, typename CaseMul>
+  auto match(CaseNum case_num, CaseAdd case_add, CaseMul case_mul) {
+    return visit(overloaded{case_num, case_add, case_mul},
+                 *static_cast<variant<NumExpr, AddExpr, MulExpr>*>(this));
+  }
+};
+
+ExpressionPtr Num(int64_t value) {
+  return make_unique<Expression>(NumExpr{value});
 }
 
-int64_t Evaluate(const Expression& expr) {
-  return match(
-      expr, [](const NumExpr& num_expr) { return num_expr.value; },
+ExpressionPtr Add(ExpressionPtr left, ExpressionPtr right) {
+  return make_unique<Expression>(AddExpr{move(left), move(right)});
+}
+
+ExpressionPtr Mul(ExpressionPtr left, ExpressionPtr right) {
+  return make_unique<Expression>(MulExpr{move(left), move(right)});
+}
+
+int64_t Evaluate(Expression& expr) {
+  return expr.match(
+      [](const NumExpr& num_expr) { return num_expr.value; },
       [](const AddExpr& add_expr) {
         return Evaluate(*add_expr.left) + Evaluate(*add_expr.right);
       },
@@ -91,29 +91,25 @@ int GetPrecedence(char op, PrecedenceOption precedence_option) {
   }
 }
 
-using Op = function<unique_ptr<Expression>(unique_ptr<Expression>,
-                                           unique_ptr<Expression>)>;
-
 // Discharges ops with precedence >= `precedence`.
-void DischargeOps(stack<unique_ptr<Expression>>& expr_stack,
-                  stack<char>& op_stack, int precedence,
-                  PrecedenceOption precedence_option) {
+void DischargeOps(stack<ExpressionPtr>& expr_stack, stack<char>& op_stack,
+                  int precedence, PrecedenceOption precedence_option) {
   while (!op_stack.empty() &&
          GetPrecedence(op_stack.top(), precedence_option) >= precedence) {
-    unique_ptr<Expression> rhs = move(expr_stack.top());
+    ExpressionPtr rhs = move(expr_stack.top());
     expr_stack.pop();
-    unique_ptr<Expression> lhs = move(expr_stack.top());
+    ExpressionPtr lhs = move(expr_stack.top());
     expr_stack.pop();
-    Op op = op_stack.top() == '+' ? Add : Mul;
+    auto op = op_stack.top() == '+' ? Add : Mul;
     op_stack.pop();
     expr_stack.push(op(move(lhs), move(rhs)));
   }
 }
 
 // Assumes `line` is a well-formed arithmetic expression.
-unique_ptr<Expression> ParseExpression(string_view line,
-                                       PrecedenceOption precedence_option) {
-  stack<unique_ptr<Expression>> expr_stack;
+ExpressionPtr ParseExpression(string_view line,
+                              PrecedenceOption precedence_option) {
+  stack<ExpressionPtr> expr_stack;
   stack<char> op_stack;
   while (!line.empty()) {
     switch (line[0]) {
