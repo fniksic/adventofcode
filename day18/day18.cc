@@ -12,9 +12,9 @@
 
 using namespace std;
 
-class NumExpr;
-class AddExpr;
-class MulExpr;
+struct NumExpr;
+struct AddExpr;
+struct MulExpr;
 
 using Expression = variant<NumExpr, AddExpr, MulExpr>;
 
