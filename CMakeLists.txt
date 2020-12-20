@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(adventofcode)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -march=native")
 
 ### day1
 add_library(day1_lib day1/day1.h day1/day1.cc)
@@ -139,3 +139,10 @@ add_executable(day18 day18/main.cc)
 target_link_libraries(day18 LINK_PRIVATE day18_lib)
 add_executable(day18_test day18/test.cc)
 target_link_libraries(day18_test LINK_PRIVATE day18_lib)
+
+### day19
+add_library(day19_lib day19/day19.h day19/day19.cc)
+add_executable(day19 day19/main.cc)
+target_link_libraries(day19 LINK_PRIVATE day19_lib)
+add_executable(day19_test day19/test.cc)
+target_link_libraries(day19_test LINK_PRIVATE day19_lib)
