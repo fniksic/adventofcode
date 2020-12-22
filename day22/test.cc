@@ -9,11 +9,23 @@ using namespace std;
 
 void TestDay22() {
   istringstream in(string(
-      R"(
+      R"(Player 1:
+9
+2
+6
+3
+1
+
+Player 2:
+5
+8
+4
+7
+10
 )"));
   ostringstream out;
   string expected =
-      R"(
+      R"(Part 1: 306
 )";
 
   day22(in, out);
