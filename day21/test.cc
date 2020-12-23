@@ -9,11 +9,15 @@ using namespace std;
 
 void TestDay21() {
   istringstream in(string(
-      R"(
+      R"(mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+trh fvjkl sbzzf mxmxvkd (contains dairy)
+sqjhc fvjkl (contains soy)
+sqjhc mxmxvkd sbzzf (contains fish)
 )"));
   ostringstream out;
   string expected =
-      R"(
+      R"(Part 1: 5
+Part 2: mxmxvkd,sqjhc,fvjkl
 )";
 
   day21(in, out);
