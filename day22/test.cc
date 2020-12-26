@@ -26,6 +26,7 @@ Player 2:
   ostringstream out;
   string expected =
       R"(Part 1: 306
+Part 2: 291
 )";
 
   day22(in, out);
