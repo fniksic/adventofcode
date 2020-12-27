@@ -14,6 +14,7 @@ void TestDay23() {
   ostringstream out;
   string expected =
       R"(Part 1: 67384529
+Part 2: 149245887792
 )";
 
   day23(in, out);
